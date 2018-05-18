@@ -29,7 +29,7 @@ public class AuthProxy implements MethodInterceptor {
                             MethodProxy arg3) throws Throwable {
         //用户进行判断
         if(!"张三".equals(name)){
-            System.out.println("你没有权限！");
+            System.out.println(name +":方法["+ arg1.getName()+ "]你没有权限！");
             return null;
         }
         return arg3.invokeSuper(arg0, arg2);

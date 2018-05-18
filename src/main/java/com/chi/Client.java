@@ -12,6 +12,7 @@ public class Client {
         System.out.println("========================");
         haveAuth();
         System.out.println("========================");
+        haveAuthByFilter();
     }
 
     private static void doMethod(TableDAO dao) {
@@ -40,5 +41,17 @@ public class Client {
         //对象的所有方法都会调用拦截方法
         tDao.toString();
         tDao.hashCode();
+    }
+
+
+    //方法权限(开放查询功能)
+    public static void haveAuthByFilter(){
+
+        //开放查询功能
+        TableDAO tDao = TableDAOFactory.getAuthInstanceByFilter(new AuthProxy("张三"));
+        doMethod(tDao);
+
+        tDao = TableDAOFactory.getAuthInstanceByFilter(new AuthProxy("李四"));
+        doMethod(tDao);
     }
 }
