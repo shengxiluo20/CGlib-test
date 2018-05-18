@@ -15,6 +15,16 @@ public class AuthProxy implements MethodInterceptor {
     public AuthProxy(String name){
         this.name = name;
     }
+
+    /**
+     * 拦截器方法
+     * @param arg0
+     * @param arg1
+     * @param arg2
+     * @param arg3
+     * @return
+     * @throws Throwable
+     */
     public Object intercept(Object arg0, Method arg1, Object[] arg2,
                             MethodProxy arg3) throws Throwable {
         //用户进行判断

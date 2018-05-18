@@ -7,8 +7,11 @@ public class Client {
 
     public static void main(String[] args) {
         normal();
+        System.out.println("========================");
         haveNoAuth();
+        System.out.println("========================");
         haveAuth();
+        System.out.println("========================");
     }
 
     private static void doMethod(TableDAO dao) {
@@ -16,21 +19,26 @@ public class Client {
         dao.query();
         dao.update();
         dao.delete();
-        System.out.println("========================");
     }
 
+    //正常
     private static void normal() {
         TableDAO tableDao = TableDAOFactory.getInstance();
         doMethod(tableDao);
     }
 
+    //有权限
     private static void haveAuth() {
         TableDAO tDao = TableDAOFactory.getAuthInstance(new AuthProxy("张三"));
         doMethod(tDao);
     }
 
+    //无权限
     private static void haveNoAuth() {
         TableDAO tDao = TableDAOFactory.getAuthInstance(new AuthProxy("李四"));
         doMethod(tDao);
+        //对象的所有方法都会调用拦截方法
+        tDao.toString();
+        tDao.hashCode();
     }
 }
